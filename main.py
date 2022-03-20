@@ -10,8 +10,10 @@ import newton_method
 
 def find_solution():
     function = ""
-    print("а хочешь сам добавить функцию ?_?")
+    print("а хочешь сам добавить функцию ?_?\n"
+          "если да то введи 1")
     if int(input()) == 1:
+        print("введи функцию")
         fn_num, function = functions.create_own_function()
     else:
         fn_num = data_io.get_function_num()
