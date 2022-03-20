@@ -1,3 +1,4 @@
+import numpy as np
 import bisection_method
 import calc_utils
 import data_io
@@ -16,8 +17,7 @@ def find_solution():
         fn_num = data_io.get_function_num()
         function = lambda x: eval(functions.functions_name[fn_num])
     # function = lambda x: eval(input())
-
-    data_io.plot_function(fn.get_function(fn_num), -9, 9, -9, 9, 1)
+    data_io.plot_function(function, -9, 9, -9, 9, 1)
     interval_type = data_io.get_interval_input_type()
 
     if interval_type == 1:

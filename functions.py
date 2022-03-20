@@ -1,3 +1,5 @@
+import math
+import numpy as np
 functions_name = {
     0: "x ** 3 + 2.28 * (x ** 2) - 1.934 * x - 3.907",
     1: "x ** 2 - 3 * x - 2",
@@ -6,6 +8,7 @@ functions_name = {
 
 
 def get_function(num):
+
     return lambda x: eval(functions_name[num])
 
 
@@ -31,6 +34,9 @@ def create_own_function():
     while True:
         try:
             zxc = input()
+            zxc.replace("sin","np.sin")
+            zxc.replace("cos", "np.cos")
+            zxc.replace("tg", "np.tg")
             temp = lambda x: eval(zxc)
             temp.__call__(1)
             functions_name[len(functions_name)] = zxc

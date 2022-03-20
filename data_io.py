@@ -1,5 +1,5 @@
 import inspect
-
+import math
 import functions
 import functions as fn
 import matplotlib.pyplot as plt
@@ -19,9 +19,12 @@ def plot_function(func, min_x, max_x, min_y, max_y, step):
     ax.spines['top'].set_color('none')
     ax.xaxis.set_ticks_position('bottom')
     ax.yaxis.set_ticks_position('left')
-
-    ax.plot(x, func(x), "g", linewidth=2.0)
-
+    print(func(1))
+    try:
+        ax.plot(x, func.__call__(x), "g", linewidth=2.0)
+    except Exception:
+        print("ну ты ввел плохо =/")
+        exit(-1)
     ax.set(xlim=(min_x, max_x), xticks=np.arange(min_x, max_x, step),
            ylim=(min_y, max_y), yticks=np.arange(min_y, max_y, step))
 
