@@ -1,3 +1,5 @@
+import inspect
+
 import functions
 import functions as fn
 import matplotlib.pyplot as plt
@@ -5,7 +7,7 @@ import numpy as np
 import sympy as sp
 
 
-#Отрисовка графика
+# Отрисовка графика
 def plot_function(func, min_x, max_x, min_y, max_y, step):
     x = np.linspace(min_x, max_x, 10000)
 
@@ -27,15 +29,15 @@ def plot_function(func, min_x, max_x, min_y, max_y, step):
 
 
 def get_function_num():
-    function = -1
-    while function != 1 and function != 2 and function != 3:
-        for i in range(1, 4):
-            print(str(i) + " - " + fn.get_function_name(i))
+    while True:
+        for i in range(len(functions.functions_name)):
+            print(str(i) + " - " + functions.functions_name[i])
         try:
             function = int(input("Введите номер желаемой функции: "))
+            if function in functions.functions_name:
+                return function
         except ValueError:
             print("Номер функции должен быть числом")
-    return function
 
 
 def get_interval_input_type():
@@ -47,7 +49,8 @@ def get_interval_input_type():
             print("Введите 1 или 2")
     return type
 
-#Ввод интервала и проверка его корректности
+
+# Ввод интервала и проверка его корректности
 def get_interval(function):
     a, b = 0, 0
     while True:
@@ -68,6 +71,7 @@ def get_interval(function):
             print("Интервал содержит ноль или обе точки одного знака.")
     return a, b
 
+
 def ask_continue():
     type = 0
     while type != 1 and type != 2:
@@ -77,16 +81,19 @@ def ask_continue():
             print("Введите 1 или 2")
     return type
 
+
 def ask_methods():
     type = 0
     while type != 1 and type != 2:
         try:
-            type = int(input("Введите 1, чтобы выбрать метод половинного деления, 2 чтобы выбрать метод простой итерации: "))
+            type = int(
+                input("Введите 1, чтобы выбрать метод половинного деления, 2 чтобы выбрать метод простой итерации: "))
         except ValueError:
             print("Введите 1 или 2")
     return type
 
-def ask_error():
+
+def ask_accuracy():
     number = 0
     while True:
         try:
@@ -97,6 +104,7 @@ def ask_error():
         except ValueError:
             print("Введите число")
 
+
 def ask_task():
     type = 0
     while type != 1 and type != 2:
@@ -106,15 +114,17 @@ def ask_task():
             print("Введите 1 или 2")
     return type
 
-#------Системы----
 
-#Построение графика системы
+# ------Системы----
+
+# Построение графика системы
 def plot_system(num1, num2):
     x, y = sp.symbols("x y")
     sp.plot_implicit(sp.Or(sp.Eq(functions.get_system_function(num1)(x, y), 0), sp.Eq(
         functions.get_system_function(num2)(x, y), 0)))
 
-#Выбор функций для системы
+
+# Выбор функций для системы
 def get_system_function_num():
     function1, function2 = -1, -1
     while True:
@@ -132,7 +142,8 @@ def get_system_function_num():
         except ValueError:
             print("Должен быть числом")
 
-#Получение начального приближения
+
+# Получение начального приближения
 def get_start():
     a, b = 0, 0
     while True:
