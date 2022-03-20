@@ -1,5 +1,3 @@
-import inspect
-import math
 import functions
 import functions as fn
 import matplotlib.pyplot as plt
@@ -55,7 +53,6 @@ def get_interval_input_type():
 
 # Ввод интервала и проверка его корректности
 def get_interval(function):
-    a, b = 0, 0
     while True:
         try:
             a, b = map(float, input("Введите границы интервала через пробел: ").split())
@@ -97,7 +94,6 @@ def ask_methods():
 
 
 def ask_accuracy():
-    number = 0
     while True:
         try:
             number = float(input("Введите точность: "))
@@ -121,26 +117,23 @@ def ask_task():
 # ------Системы----
 
 # Построение графика системы
-def plot_system(num1, num2):
+def plot_system(function1, function2):
     x, y = sp.symbols("x y")
-    sp.plot_implicit(sp.Or(sp.Eq(functions.get_system_function(num1)(x, y), 0), sp.Eq(
-        functions.get_system_function(num2)(x, y), 0)))
+    sp.plot_implicit(sp.Or(sp.Eq(function1(x, y), 0), sp.Eq(
+        function2(x, y), 0)))
 
 
 # Выбор функций для системы
 def get_system_function_num():
-    function1, function2 = -1, -1
     while True:
-        for i in range(1, 4):
-            print(str(i) + " - " + fn.get_system_function_name(i))
+        for i in range(len(functions.system_functions_name)):
+            print(str(i) + " - " + functions.system_functions_name[i])
         try:
             function1 = int(input("Введите номер первой функции: "))
             function2 = int(input("Введите второй первой функции: "))
-            if (function1 == 1 or function1 == 2 or function1 == 3):
-                if (function2 == 1 or function2 == 2 or function2 == 3):
-                    if (function1 != function2):
-                        return function1, function2
-            print("Числа должны быть разными и от 1 до 3")
+            if function1 in functions.system_functions_name and function2 in functions.system_functions_name and function1 != function2:
+                return function1, function2
+            print("Числа должны быть разными и из представленных")
 
         except ValueError:
             print("Должен быть числом")
@@ -148,7 +141,6 @@ def get_system_function_num():
 
 # Получение начального приближения
 def get_start():
-    a, b = 0, 0
     while True:
         try:
             a, b = map(float, input("Введите начальное приближение через пробел: ").split())

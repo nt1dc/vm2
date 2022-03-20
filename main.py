@@ -3,13 +3,11 @@ import bisection_method
 import calc_utils
 import data_io
 import functions
-import functions as fn
 import iterrations_method
 import newton_method
 
 
 def find_solution():
-    function = ""
     print("а хочешь сам добавить функцию ?_?\n"
           "если да то введи 1")
     if int(input()) == 1:
@@ -18,7 +16,6 @@ def find_solution():
     else:
         fn_num = data_io.get_function_num()
         function = lambda x: eval(functions.functions_name[fn_num])
-    # function = lambda x: eval(input())
     data_io.plot_function(function, -9, 9, -9, 9, 1)
     interval_type = data_io.get_interval_input_type()
 
@@ -43,11 +40,14 @@ def find_solution():
 
 def find_system():
     num1, num2 = data_io.get_system_function_num()
-    data_io.plot_system(num1, num2)
+    function1 = lambda x, y: eval(functions.system_functions_name[num1])
+    function2 = lambda x, y: eval(functions.system_functions_name[num2])
+
+    data_io.plot_system(function1, function2)
     start_x, start_y = data_io.get_start()
     error = data_io.ask_accuracy()
-    x, y, err_x, err_y, it = newton_method.calc_system(fn.get_system_function(num1),
-                                                       fn.get_system_function(num2), start_x, start_y,
+    x, y, err_x, err_y, it = newton_method.calc_system(function1,
+                                                       function2, start_x, start_y,
                                                        error)
     print("x = " + str(x) + ", y = " + str(y) + ", найден за " + str(it) + " итераций, вектор погрешностей: [" + str(
         err_x) + ", " + str(err_y) + "]")

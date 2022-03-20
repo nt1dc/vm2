@@ -1,4 +1,3 @@
-import math
 import numpy as np
 
 functions_name = {
@@ -7,27 +6,11 @@ functions_name = {
     2: "np.sin(x) - np.cos(x) + 0.2 * x"
 }
 
-
-def get_function(num):
-    return lambda x: eval(functions_name[num])
-
-
-def get_system_function(num):
-    if num == 1:
-        return lambda x, y: x ** 2 + y ** 2 - 4
-    if num == 2:
-        return lambda x, y: x ** 3 + y - 1
-    if num == 3:
-        return lambda x, y: x ** 2 - y - 3
-
-
-def get_system_function_name(num):
-    if num == 1:
-        return "x^2 + y^2 - 4"
-    if num == 2:
-        return "x^3 + y - 1"
-    if num == 3:
-        return "x^2 - y - 3"
+system_functions_name = {
+    0: "x ** 2 + y ** 2 - 4",
+    1: "x ** 3 + y - 1",
+    2: "x ** 2 - y - 3"
+}
 
 
 def create_own_function():
@@ -44,4 +27,5 @@ def create_own_function():
             return len(functions_name) - 1, temp
         except Exception:
             print("давай по новой, миша, все *****!\n "
-                  "вот тебе пример x ** 3 + 2.28 * (x ** 2) - 1.934 * x - 3.907 ")
+                  "вот тебе пример x ** 3 + 2.28 * (x ** 2) - 1.934 * x - 3.907\n"
+                  "ну или  sin(x) - cos(x) + 0.2 * x ")

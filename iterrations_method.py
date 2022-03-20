@@ -14,7 +14,7 @@ def calc(function, a, b, error):
     print("Лямбда А = " + str(lyambd_a))
     print("Лямбда B = " + str(lyambd_b))
 
-    if (dev_a > dev_b):
+    if dev_a > dev_b:
         lyambd = lyambd_a
     else:
         lyambd = lyambd_b
@@ -42,7 +42,6 @@ def calc(function, a, b, error):
     # Поиск корней
 
     while (abs(x_prev - x_current) > error) or (abs(function(x_current)) > error):
-        # (abs(x_prev - x_current) > error) and abs(function(x_current)) > error) and
 
         x_prev = x_current
         x_current = x_prev + lyambd * function(x_prev)
