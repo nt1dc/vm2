@@ -1,14 +1,13 @@
-import functions
-import functions as fn
 import matplotlib.pyplot as plt
 import numpy as np
 import sympy as sp
+
+import functions
 
 
 # Отрисовка графика
 def plot_function(func, min_x, max_x, min_y, max_y, step):
     x = np.linspace(min_x, max_x, 10000)
-
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.spines['left'].set_position('center')
@@ -17,11 +16,10 @@ def plot_function(func, min_x, max_x, min_y, max_y, step):
     ax.spines['top'].set_color('none')
     ax.xaxis.set_ticks_position('bottom')
     ax.yaxis.set_ticks_position('left')
-    print(func(1))
     try:
         ax.plot(x, func.__call__(x), "g", linewidth=2.0)
     except Exception:
-        print("ну ты ввел плохо =/")
+        print("ну ты ввел плохо функцию =/ ")
         exit(-1)
     ax.set(xlim=(min_x, max_x), xticks=np.arange(min_x, max_x, step),
            ylim=(min_y, max_y), yticks=np.arange(min_y, max_y, step))
@@ -34,28 +32,27 @@ def get_function_num():
         for i in range(len(functions.functions_name)):
             print(str(i) + " - " + functions.functions_name[i])
         try:
-            function = int(input("Введите номер желаемой функции: "))
+            function = int(input("Введи номер функции: "))
             if function in functions.functions_name:
                 return function
         except ValueError:
-            print("Номер функции должен быть числом")
+            print("введи нормально")
 
 
 def get_interval_input_type():
     type = 0
     while type != 1 and type != 2:
         try:
-            type = int(input("Введите 1, чтобы ввести интервал, 2, чтобы запустить автоматический поиск интервала: "))
+            type = int(input("Введи 1, чтобы ввести интервал, 2, чтобы запустить поиск интервала: "))
         except ValueError:
             print("Введите 1 или 2")
     return type
 
 
-# Ввод интервала и проверка его корректности
 def get_interval(function):
     while True:
         try:
-            a, b = map(float, input("Введите границы интервала через пробел: ").split())
+            a, b = map(float, input("Введи границы интервала через пробел: ").split())
             if a > b:
                 a, b = b, a
             elif a == b:

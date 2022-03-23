@@ -45,12 +45,12 @@ def find_system():
 
     data_io.plot_system(function1, function2)
     start_x, start_y = data_io.get_start()
-    error = data_io.ask_accuracy()
+    accuracy = data_io.ask_accuracy()
     x, y, err_x, err_y, it = newton_method.calc_system(function1,
                                                        function2, start_x, start_y,
-                                                       error)
-    print("x = " + str(x) + ", y = " + str(y) + ", найден за " + str(it) + " итераций, вектор погрешностей: [" + str(
-        err_x) + ", " + str(err_y) + "]")
+                                                       accuracy)
+    print("x = " + str(x) + ", y = " + str(y) + ", найден за " + str(it) + " итераций, " +
+          "вектор погрешностей: [" + str(err_x) + ", " + str(err_y) + "]")
 
 
 if __name__ == "__main__":

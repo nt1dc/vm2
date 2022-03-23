@@ -1,7 +1,3 @@
-# -------СИСТЕМЫ УРАВНЕНИЙ-------
-
-# Поиск частных производных
-
 # Частная производная по х
 def calc_dx(function, x, y, h=0.00000001):
     return (function(x + h, y) - function(x - h, y)) / (2 * h)
@@ -18,14 +14,14 @@ def calc_j(function1, function2, x, y):
 
 
 # Поиск решений системы
-def calc_system(function1, function2, start_x, start_y, error):
+def calc_system(function1, function2, start_x, start_y, accuracy):
     x_current = start_x
     y_current = start_y
     y_prev = y_current * 1000 + 10
     x_prev = x_current * 1000 + 10
     iterations = 0
 
-    while max(abs(x_current - x_prev), abs(y_current - y_prev)) > error:
+    while max(abs(x_current - x_prev), abs(y_current - y_prev)) > accuracy:
         x_prev = x_current
         y_prev = y_current
         J = calc_j(function1, function2, x_prev, y_prev)

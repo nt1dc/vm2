@@ -3,13 +3,14 @@ import numpy as np
 functions_name = {
     0: "x ** 3 + 2.28 * (x ** 2) - 1.934 * x - 3.907",
     1: "x ** 2 - 3 * x - 2",
-    2: "np.sin(x) - np.cos(x) + 0.2 * x"
+    2: "np.sin(x) - np.cos(x) + 0.2 * x",
+    3: "2.74*(x**3)-1.93*(x**2)-15.28*x-3.72",
 }
 
 system_functions_name = {
     0: "x ** 2 + y ** 2 - 4",
     1: "x ** 3 + y - 1",
-    2: "x ** 2 - y - 3"
+    2: "x ** 2 - y - 3",
 }
 
 
